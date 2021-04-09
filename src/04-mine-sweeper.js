@@ -21,8 +21,23 @@
  *  [1, 1, 1]
  * ]
  */
-function minesweeper(/* matrix */) {
-  throw new Error('Not implemented');
+function minesweeper(matrix) {
+  const getCount = (arr, i, j) => {
+    let count = 0;
+    for (let n = -1; n <= 1; n++) {
+      for (let m = -1; m <= 1; m++) {
+        if (arr[i + n]) {
+          count += arr[i + n][j + m] === true ? 1 : 0;
+        }
+      }
+    }
+
+    return count;
+  };
+
+  return matrix.map((row, i) => (
+    row.map((value, j) => (value === true ? 1 : getCount(matrix, i, j)))
+  ));
 }
 
 module.exports = minesweeper;
