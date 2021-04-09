@@ -22,7 +22,7 @@ class Queue {
     let size = this.queue.value === null
       ? 0
       : 1;
-    while (this.queue.next !== null) {
+    while (this.queue.next) {
       size++;
     }
     return size;
@@ -34,7 +34,7 @@ class Queue {
     } else {
       let node = this.queue;
 
-      while (node.next !== null) {
+      while (node.next) {
         node = node.next;
       }
 
