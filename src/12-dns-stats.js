@@ -25,12 +25,12 @@ function getDNSStats(domains) {
   domains.forEach((value) => {
     const valueArr = value.split('.').reverse();
     valueArr.forEach((v, i) => {
-      arr.push(`${arr[i - 1] === undefined ? '' : arr[i - 1]}.${v}`);
+      arr.push(`${!arr[i - 1] ? '' : arr[i - 1]}.${v}`);
     });
   });
 
   return arr.reduce((acc, curr) => {
-    if (acc[curr] === undefined) {
+    if (!acc[curr]) {
       acc[curr] = 1;
     } else {
       acc[curr] += 1;

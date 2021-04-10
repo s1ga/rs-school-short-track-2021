@@ -19,9 +19,7 @@ class Queue {
   }
 
   get size() {
-    let size = this.queue.value === null
-      ? 0
-      : 1;
+    let size = !this.queue.value ? 0 : 1;
     while (this.queue.next) {
       size++;
     }
@@ -29,7 +27,7 @@ class Queue {
   }
 
   enqueue(element) {
-    if (this.queue.value === null) {
+    if (!this.queue.value) {
       this.queue.value = element;
     } else {
       let node = this.queue;
