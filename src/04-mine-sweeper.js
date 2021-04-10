@@ -25,18 +25,18 @@ function minesweeper(matrix) {
   const getCount = (arr, i, j) => {
     let count = 0;
     for (let n = -1; n <= 1; n++) {
-      for (let m = -1; m <= 1; m++) {
-        if (arr[i + n]) {
+      if (arr[i + n]) {
+        for (let m = -1; m <= 1; m++) {
           count += arr[i + n][j + m] === true ? 1 : 0;
         }
       }
     }
 
-    return count;
+    return arr[i][j] === true ? count - 1 : count;
   };
 
   return matrix.map((row, i) => (
-    row.map((value, j) => (value === true ? 1 : getCount(matrix, i, j)))
+    row.map((_, j) => getCount(matrix, i, j))
   ));
 }
 
