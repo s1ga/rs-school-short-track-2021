@@ -11,17 +11,25 @@
  */
 function getCommonCharacterCount(s1, s2) {
   const has = Object.prototype.hasOwnProperty;
-  const s1Obj = {};
-  const s2Obj = {};
   let result = 0;
+  const s1Obj = s1.split('').reduce((acc, curr) => {
+    if (!acc[curr]) {
+      acc[curr] = 1;
+    } else {
+      acc[curr] += 1;
+    }
 
-  s1.split('').forEach((char) => {
-    s1Obj[char] = s1.split('').filter((c) => c === char).length;
-  });
+    return acc;
+  }, {});
+  const s2Obj = s2.split('').reduce((acc, curr) => {
+    if (!acc[curr]) {
+      acc[curr] = 1;
+    } else {
+      acc[curr] += 1;
+    }
 
-  s2.split('').forEach((char) => {
-    s2Obj[char] = s2.split('').filter((c) => c === char).length;
-  });
+    return acc;
+  }, {});
 
   Object.keys(s1Obj).forEach((key) => {
     if (has.call(s2Obj, key)) {
